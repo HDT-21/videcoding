@@ -4,16 +4,17 @@
 
 本仓库包含两个使用 Streamlit 构建的 AI 应用：
 
-- `app.py`：知识库问答。上传文档后，在本地构建向量知识库，并通过配置的聊天模型回答问题。
-- `ai_friend/02_.py`：AI 聊天伴侣。支持多会话聊天，并将会话记录保存在本地。
+- `ai_textsearch/ai_textsearch.py`：知识库问答。上传文档后，在本地构建向量知识库，并通过配置的聊天模型回答问题。
+- `ai_friend/ai_friend.py`：AI 聊天伴侣。支持多会话聊天，并将会话记录保存在本地。
 
 ## 项目内容
 
 ```text
 .
-├── app.py                 # 知识库问答应用
+├── ai_textsearch/                 # 知识库问答应用
+    └── ai_textsearch.py 
 └── ai_friend/
-    └── 02_.py             # 多会话 AI 聊天应用
+    └── ai_friend.py               # 多会话 AI 聊天应用
 ```
 
 运行应用后，还可能在本地生成配置、上传文件、聊天记录或向量数据库等数据文件。这些文件不属于源码，不应提交到公开仓库。
@@ -54,7 +55,7 @@ python -m pip install streamlit openai langchain-ollama langchain-community lang
 
 本仓库当前没有锁定依赖版本的 `requirements.txt`。正式部署前，建议验证兼容性后生成并维护依赖清单。
 
-### 3. 安装并准备 Ollama 模型
+### 3. 安装并准备 Ollama 模型（可选）
 
 安装并启动 Ollama，然后获取两个应用使用的模型：
 
@@ -73,7 +74,7 @@ ollama list
 
 ## 配置聊天服务
 
-### 知识库问答：`app.py`
+### 知识库问答：`ai_textsearch.py`
 
 启动应用后，在侧边栏配置：
 
@@ -101,7 +102,7 @@ export OPENAI_BASE_URL="服务商提供的 API Base URL"
 
 应用会将侧边栏配置写入仓库根目录下的 `.app_config.json`。该文件以明文保存配置，请勿提交真实 API Key。
 
-### AI 聊天伴侣：`ai_friend/02_.py`
+### AI 聊天伴侣：`ai_friend/ai_friend.py`
 
 聊天伴侣默认使用本机 Ollama 的 `deepseek-r1:8b`。若需更改模型或服务地址，请修改 `ai_friend/02_.py` 中的模型名称和 `base_url` 配置。
 
@@ -110,13 +111,13 @@ export OPENAI_BASE_URL="服务商提供的 API Base URL"
 在仓库根目录启动知识库问答：
 
 ```bash
-python -m streamlit run app.py
+python -m streamlit run ai_textsearch/ai_textsearch.py
 ```
 
 在仓库根目录启动 AI 聊天伴侣：
 
 ```bash
-python -m streamlit run ai_friend/02_.py
+python -m streamlit run ai_friend/ai_friend.py
 ```
 
 启动后，Streamlit 会在终端显示本地访问地址。按 `Ctrl+C` 可停止应用。
