@@ -1,7 +1,5 @@
 # videcoding
 
-# AI 智能应用
-
 本仓库包含两个使用 Streamlit 构建的 AI 应用：
 
 - `ai_textsearch/ai_textsearch.py`：知识库问答。上传文档后，在本地构建向量知识库，并通过配置的聊天模型回答问题。
